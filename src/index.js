@@ -1,5 +1,7 @@
 import './sass/main.scss';
 
+const timerFace = document.querySelector('#timer-1');
+
 // new CountdownTimer({
 //   selector: '#timer-1',
 //   targetDate: new Date('Jul 17, 2019'),
@@ -7,19 +9,25 @@ import './sass/main.scss';
 
 const timer = {
   start() {
-    const startTime = Date.now();
+    const targetDate = new Date('2021, Jul 17');
 
     setInterval(() => {
-      const currentTime = new Date('2019, Jul 17');
-      const deltaTime = startTime - currentTime;
-      const { days, hours, mins, secs } = getTimeComponents(deltaTime);
+      const currentDate = Date.now();
+      const time = targetDate - currentDate;
+      const times = getTimeComponents(time);
 
-      console.log(`${days}:${hours}:${mins}:${secs}`);
+      updateTimerFace(times);
+
+      console.log(times);
     }, 1000);
   },
 };
 
 timer.start();
+
+function updateTimerFace({ days, hours, mins, secs }) {
+  timerFace.textContent = `${days}:${hours}:${mins}:${secs}`;
+}
 
 function pad(value) {
   return String(value).padStart(2, '0');
