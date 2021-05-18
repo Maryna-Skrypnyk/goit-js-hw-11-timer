@@ -189,33 +189,37 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\images\\demo.jpg":[["demo.3a1bb503.jpg","images/demo.jpg"],"images/demo.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./sass/main.scss");
 
-new CountdownTimer({
-  selector: '#timer-1',
-  targetDate: new Date('Jul 17, 2019')
-});
+var timerFace = document.querySelector('#timer-1'); // new CountdownTimer({
+//   selector: '#timer-1',
+//   targetDate: new Date('Jul 17, 2019'),
+// });
+
 var timer = {
   start: function start() {
-    var startTime = Date('Jul 17, 2019');
+    var targetDate = new Date('2021, Jul 17');
     setInterval(function () {
-      var currentTime = Date.now();
-      var deltaTime = currentTime - startTime;
-
-      var _getTimeComponents = getTimeComponents(deltaTime),
-          days = _getTimeComponents.days,
-          hours = _getTimeComponents.hours,
-          mins = _getTimeComponents.mins,
-          secs = _getTimeComponents.secs;
-
-      console.log("".concat(days, ":").concat(hours, ":").concat(mins, ":").concat(secs));
+      var currentDate = Date.now();
+      var time = targetDate - currentDate;
+      var times = getTimeComponents(time);
+      updateTimerFace(times);
+      console.log(times);
     }, 1000);
   }
 };
 timer.start();
+
+function updateTimerFace(_ref) {
+  var days = _ref.days,
+      hours = _ref.hours,
+      mins = _ref.mins,
+      secs = _ref.secs;
+  timerFace.textContent = "".concat(days, ":").concat(hours, ":").concat(mins, ":").concat(secs);
+}
 
 function pad(value) {
   return String(value).padStart(2, '0');
@@ -261,7 +265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52606" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54361" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
