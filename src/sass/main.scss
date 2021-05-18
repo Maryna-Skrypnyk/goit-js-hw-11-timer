@@ -18,4 +18,35 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   line-height: 1.5;
+  text-align: center;
+}
+
+.timer {
+  font-family: sans-serif;
+  // color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  font-size: 30px;
+}
+
+.field {
+  padding: 10px;
+  border-radius: 4px;
+  background: gray;
+  display: inline-block;
+}
+
+.value {
+  padding: 15px;
+  border-radius: 4px;
+  background: gray;
+  display: inline-block;
+}
+
+.label {
+  display: block;
+  padding-top: 5px;
+  font-size: 20px;
+  color: #fff;
 }

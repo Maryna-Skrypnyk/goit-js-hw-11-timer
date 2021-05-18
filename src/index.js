@@ -1,6 +1,10 @@
+import timerTpl from './templates/timer.hbs';
 import './sass/main.scss';
 
-const timerFace = document.querySelector('#timer-1');
+const timerRef = document.querySelector('#timer-1');
+
+const timerMarkup = timerTpl();
+timerRef.insertAdjacentHTML('beforeend', timerMarkup);
 
 // new CountdownTimer({
 //   selector: '#timer-1',
@@ -26,7 +30,7 @@ const timer = {
 timer.start();
 
 function updateTimerFace({ days, hours, mins, secs }) {
-  timerFace.textContent = `${days}:${hours}:${mins}:${secs}`;
+  timerRef.textContent = `${days}:${hours}:${mins}:${secs}`;
 }
 
 function pad(value) {
