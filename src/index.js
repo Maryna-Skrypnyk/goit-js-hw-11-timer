@@ -1,10 +1,15 @@
-import timerTpl from './templates/timer.hbs';
+// import moment from 'moment';
+// import timerTpl from './templates/timer.hbs';
 import './sass/main.scss';
 
 const timerRef = document.querySelector('#timer-1');
+const daysRef = document.querySelector('[data-value="days"]');
+const hoursRef = document.querySelector('[data-value="hours"]');
+const minutesRef = document.querySelector('[data-value="mins"]');
+const secondsRef = document.querySelector('[data-value="secs"]');
 
-const timerMarkup = timerTpl();
-timerRef.insertAdjacentHTML('beforeend', timerMarkup);
+// const timerMarkup = timerTpl();
+// timerRef.insertAdjacentHTML('beforeend', timerMarkup);
 
 // new CountdownTimer({
 //   selector: '#timer-1',
@@ -13,7 +18,7 @@ timerRef.insertAdjacentHTML('beforeend', timerMarkup);
 
 const timer = {
   start() {
-    const targetDate = new Date('2021, Jul 17');
+    const targetDate = new Date('Sep 27, 2021');
 
     setInterval(() => {
       const currentDate = Date.now();
@@ -30,7 +35,11 @@ const timer = {
 timer.start();
 
 function updateTimerFace({ days, hours, mins, secs }) {
-  timerRef.textContent = `${days}:${hours}:${mins}:${secs}`;
+  // timerRef.textContent = `${days}:${hours}:${mins}:${secs}`;
+  daysRef.textContent = `${days}`;
+  hoursRef.textContent = `${hours}`;
+  minutesRef.textContent = `${mins}`;
+  secondsRef.textContent = `${secs}`;
 }
 
 function pad(value) {
@@ -38,7 +47,7 @@ function pad(value) {
 }
 
 function getTimeComponents(time) {
-  const days = Math.floor(time / (1000 * 60 * 60 * 24));
+  const days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
   const hours = pad(
     Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
   );
