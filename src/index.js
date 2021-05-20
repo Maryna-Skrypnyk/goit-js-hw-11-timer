@@ -1,4 +1,3 @@
-// import moment from 'moment';
 // import timerTpl from './templates/timer.hbs';
 import './sass/main.scss';
 
