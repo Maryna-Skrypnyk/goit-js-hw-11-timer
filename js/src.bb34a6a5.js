@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var t=document.querySelector("#timer-1"),e=document.querySelector('[data-value="days"]'),n=document.querySelector('[data-value="hours"]'),o=document.querySelector('[data-value="mins"]'),a=document.querySelector('[data-value="secs"]'),r={start:function(){var t=new Date("Sep 27, 2021");setInterval(function(){var e=Date.now(),n=u(t-e);c(n),console.log(n)},1e3)}};function c(t){var r=t.days,c=t.hours,s=t.mins,u=t.secs;e.textContent="".concat(r),n.textContent="".concat(c),o.textContent="".concat(s),a.textContent="".concat(u)}function s(t){return String(t).padStart(2,"0")}function u(t){return{days:s(Math.floor(t/864e5)),hours:s(Math.floor(t%864e5/36e5)),mins:s(Math.floor(t%36e5/6e4)),secs:s(Math.floor(t%6e4/1e3))}}r.start();
 },{"./sass/main.scss":"clu1"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-11-timer/src.09265f31.js.map
+//# sourceMappingURL=/goit-js-hw-11-timer/src.bb34a6a5.js.map
