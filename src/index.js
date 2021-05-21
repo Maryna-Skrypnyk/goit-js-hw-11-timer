@@ -5,7 +5,7 @@ class CountdownTimer {
   constructor({ selector, targetDate, onTick }) {
     this.selector = selector;
     this.targetDate = targetDate;
-    // this.intervalId = null;
+    this.intervalId = null;
     this.onTick = onTick;
   }
 
@@ -21,18 +21,29 @@ class CountdownTimer {
       const timeComponents = this.getTimeComponents(deltaTime);
       this.onTick(timeComponents);
 
-      console.log(timeComponents);
+      // console.log(timeComponents);
     }, 1000);
   }
 
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+    if (days <= 1) {
+      document.querySelector('[data-label-days]').textContent = 'Day';
+    }
     const hours = this.pad(
       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
+    if (hours <= 1) {
+      document.querySelector('[data-label-hours]').textContent = 'Hour';
+    }
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    if (mins <= 1) {
+      document.querySelector('[data-label-mins]').textContent = 'Minute';
+    }
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-
+    if (secs <= 1) {
+      document.querySelector('[data-label-secs]').textContent = 'Second';
+    }
     return { days, hours, mins, secs };
   }
 
@@ -44,7 +55,7 @@ class CountdownTimer {
 const timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Sep 27, 2021'),
-  // targetDate: new Date('May 21, 2021 17:17:00'),
+  // targetDate: new Date('May 21, 2021 17:55:00'),
   onTick: updateTimerFace,
 });
 
