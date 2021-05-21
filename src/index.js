@@ -27,23 +27,24 @@ class CountdownTimer {
 
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-    if (days <= 1) {
-      document.querySelector('[data-label-days]').textContent = 'Day';
-    }
+    days == 1
+      ? (document.querySelector('[data-label-days]').textContent = 'Day')
+      : (document.querySelector('[data-label-days]').textContent = 'Days');
     const hours = this.pad(
       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
-    if (hours <= 1) {
-      document.querySelector('[data-label-hours]').textContent = 'Hour';
-    }
+    hours == 1
+      ? (document.querySelector('[data-label-hours]').textContent = 'Hour')
+      : (document.querySelector('[data-label-hours]').textContent = 'Hours');
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-    if (mins <= 1) {
-      document.querySelector('[data-label-mins]').textContent = 'Minute';
-    }
+    mins == 1
+      ? (document.querySelector('[data-label-mins]').textContent = 'Minute')
+      : (document.querySelector('[data-label-mins]').textContent = 'Minutes');
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-    if (secs <= 1) {
-      document.querySelector('[data-label-secs]').textContent = 'Second';
-    }
+    secs == 1
+      ? (document.querySelector('[data-label-secs]').textContent = 'Second')
+      : (document.querySelector('[data-label-secs]').textContent = 'Seconds');
+
     return { days, hours, mins, secs };
   }
 
