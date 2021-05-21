@@ -2,11 +2,12 @@
 import './sass/main.scss';
 
 class CountdownTimer {
-  constructor({ selector, targetDate, onTick }) {
+  constructor({ selector, targetDate, onTick, onChangeLabel }) {
     this.selector = selector;
     this.targetDate = targetDate;
     this.intervalId = null;
     this.onTick = onTick;
+    this.onChangeLabel = onChangeLabel;
   }
 
   startTimer() {
@@ -20,30 +21,18 @@ class CountdownTimer {
 
       const timeComponents = this.getTimeComponents(deltaTime);
       this.onTick(timeComponents);
-
+      this.onChangeLabel(timeComponents);
       // console.log(timeComponents);
     }, 1000);
   }
 
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-    days == 1
-      ? (document.querySelector('[data-label-days]').textContent = 'Day')
-      : (document.querySelector('[data-label-days]').textContent = 'Days');
     const hours = this.pad(
       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
-    hours == 1
-      ? (document.querySelector('[data-label-hours]').textContent = 'Hour')
-      : (document.querySelector('[data-label-hours]').textContent = 'Hours');
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-    mins == 1
-      ? (document.querySelector('[data-label-mins]').textContent = 'Minute')
-      : (document.querySelector('[data-label-mins]').textContent = 'Minutes');
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-    secs == 1
-      ? (document.querySelector('[data-label-secs]').textContent = 'Second')
-      : (document.querySelector('[data-label-secs]').textContent = 'Seconds');
 
     return { days, hours, mins, secs };
   }
@@ -56,8 +45,9 @@ class CountdownTimer {
 const timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Sep 27, 2021'),
-  // targetDate: new Date('May 21, 2021 17:55:00'),
+  // targetDate: new Date('May 21, 2021 22:25:00'),
   onTick: updateTimerFace,
+  onChangeLabel: updateLabelFace,
 });
 
 function updateTimerFace({ days, hours, mins, secs }) {
@@ -67,9 +57,22 @@ function updateTimerFace({ days, hours, mins, secs }) {
   document.querySelector('[data-value="secs"]').textContent = `${secs}`;
 }
 
-timer.startTimer();
+function updateLabelFace({ days, hours, mins, secs }) {
+  `${days}` == 1
+    ? (document.querySelector('[data-label-days]').textContent = 'Day')
+    : (document.querySelector('[data-label-days]').textContent = 'Days');
+  `${hours}` == 1
+    ? (document.querySelector('[data-label-hours]').textContent = 'Hour')
+    : (document.querySelector('[data-label-hours]').textContent = 'Hours');
+  `${mins}` == 1
+    ? (document.querySelector('[data-label-mins]').textContent = 'Minute')
+    : (document.querySelector('[data-label-mins]').textContent = 'Minutes');
+  `${secs}` == 1
+    ? (document.querySelector('[data-label-secs]').textContent = 'Second')
+    : (document.querySelector('[data-label-secs]').textContent = 'Seconds');
+}
 
-// console.log();
+timer.startTimer();
 
 // const timerRef = document.querySelector('#timer-1');
 // const daysRef = document.querySelector('[data-value="days"]');
