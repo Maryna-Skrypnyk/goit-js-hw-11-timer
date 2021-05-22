@@ -11,19 +11,22 @@ class CountdownTimer {
   }
 
   startTimer() {
+    this.start();
     this.intervalId = setInterval(() => {
-      const currentDate = Date.now();
-      const deltaTime = this.targetDate - currentDate;
-      if (deltaTime <= 0) {
-        clearInterval(this.intervalId);
-        return;
-      }
-
-      const timeComponents = this.getTimeComponents(deltaTime);
-      this.onTick(timeComponents);
-      this.onChangeLabel(timeComponents);
-      // console.log(timeComponents);
+      this.start();
     }, 1000);
+  }
+
+  start() {
+    const currentDate = Date.now();
+    const deltaTime = this.targetDate - currentDate;
+    if (deltaTime <= 0) {
+      clearInterval(this.intervalId);
+      return;
+    }
+    const timeComponents = this.getTimeComponents(deltaTime);
+    this.onTick(timeComponents);
+    this.onChangeLabel(timeComponents);
   }
 
   getTimeComponents(time) {
