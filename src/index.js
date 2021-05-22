@@ -48,31 +48,27 @@ class CountdownTimer {
 const timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Sep 27, 2021'),
-  // targetDate: new Date('May 21, 2021 22:25:00'),
+  // targetDate: new Date('May 22, 2021 14:41:00'),
   onTick: updateTimerFace,
   onChangeLabel: updateLabelFace,
 });
 
 function updateTimerFace({ days, hours, mins, secs }) {
-  document.querySelector('[data-value="days"]').textContent = `${days}`;
-  document.querySelector('[data-value="hours"]').textContent = `${hours}`;
-  document.querySelector('[data-value="mins"]').textContent = `${mins}`;
-  document.querySelector('[data-value="secs"]').textContent = `${secs}`;
+  document.querySelector('[data-value="days"]').textContent = days;
+  document.querySelector('[data-value="hours"]').textContent = hours;
+  document.querySelector('[data-value="mins"]').textContent = mins;
+  document.querySelector('[data-value="secs"]').textContent = secs;
 }
 
 function updateLabelFace({ days, hours, mins, secs }) {
-  `${days}` == 1
-    ? (document.querySelector('[data-label-days]').textContent = 'Day')
-    : (document.querySelector('[data-label-days]').textContent = 'Days');
-  `${hours}` == 1
-    ? (document.querySelector('[data-label-hours]').textContent = 'Hour')
-    : (document.querySelector('[data-label-hours]').textContent = 'Hours');
-  `${mins}` == 1
-    ? (document.querySelector('[data-label-mins]').textContent = 'Minute')
-    : (document.querySelector('[data-label-mins]').textContent = 'Minutes');
-  `${secs}` == 1
-    ? (document.querySelector('[data-label-secs]').textContent = 'Second')
-    : (document.querySelector('[data-label-secs]').textContent = 'Seconds');
+  document.querySelector('[data-label-days]').textContent =
+    days == 1 ? 'Day' : 'Days';
+  document.querySelector('[data-label-hours]').textContent =
+    hours == 1 ? 'Hour' : 'Hours';
+  document.querySelector('[data-label-mins]').textContent =
+    mins == 1 ? 'Minute' : 'Minutes';
+  document.querySelector('[data-label-secs]').textContent =
+    secs == 1 ? 'Second' : 'Seconds';
 }
 
 timer.startTimer();
